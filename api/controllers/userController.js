@@ -235,11 +235,6 @@ const deleteUser = async (req, res) => {
     }
 }
 
-
-const stat = (req, res) => {
-    res.status(200).json({ message: "ok" });
-};
-
 module.exports = {
     getUser,
     getUserById,
