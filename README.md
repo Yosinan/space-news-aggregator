@@ -1,7 +1,11 @@
 # Ahamenes Space News Aggregator
 
 <!-- ![Ahamenes Logo](./logo.jpg) -->
-<img src="./logo.jpg" alt="Ahamenes Logo" width="200" height="200">
+<!-- <img src="./logo.jpg" alt="Ahamenes Logo" width="200" height="200"> -->
+<div style="display: flex;">
+   <img src="./logo.jpg" alt="Ahamenes Logo" width="200" height="200">
+    <h1>Ahamenes Space News Aggregator</h1>
+</div>
 
 
 🎯 Ahamenes Space News Aggregator aims to provide users with a centralized platform to access the latest space-related news articles from various sources.
