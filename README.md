@@ -1,15 +1,16 @@
 # Ahamenes Space News Aggregator
 
-Ahamenes Space News Aggregator is a web application that aggregates space news from various sources and displays them in a single location.
+🎯 Ahamenes Space News Aggregator aims to provide users with a centralized platform to access the latest space-related news articles from various sources.
 
 
 ## Features
 
-- Users can view the latest space news from various sources.
-- Users can view the details of a news article.
-- Users can search for news articles.
-- Users can filter news articles by source, category, and date.
-- Users can view the latest news articles from a specific source.
+🔑 Fetch and display space news articles from RSS feeds, APIs.
+🔑 Categorize articles based on topics such as astronomy, space exploration, astrophysics, etc.
+🔑 Implement a search functionality allowing users to find articles by keywords, titles, or authors.
+🔑 user authentication to allow registered users to personalize their news feeds and save favorite articles.
+🔑 Enable social sharing options for users to share articles on d/t social medias.
+🔑 Implement  a notification system to alert users about new articles matching their interests.
 
 
 ## Technologies Used
