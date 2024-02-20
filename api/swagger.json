@@ -1,0 +1,190 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Ahamenes-Space News Aggregator API",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/user/logout": {
+            "post": {
+                "summary": "Logout a user",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of the user to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully logged out"
+                    }
+                    
+
+                }
+            }
+        },
+        "/user/register": {
+            "post": {
+                "summary": "Register a new user",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "name": "Doe",
+                                "email": "doe@gmail.com",
+                                "password": "newPass23"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User successfully registered"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "summary": "Login a user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "email": "doe@gmail.com",
+                                "password": "newPass23"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User successfully logged in"
+                    }
+                }
+            }
+        },
+        "/user/profile": {
+            "get": {
+                "summary": "Get user profile",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User profile retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/user/{userId}": {
+            "get": {
+                "summary": "Get user by ID",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of the user to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/user/change/{userId}": {
+            "put": {
+                "summary": "Update user password",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of the user to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "password": "password23",
+                                "newPassword": "newPassword"
+                            }
+                        }
+                    }
+                }
+
+        },
+        "/user/delete/{userId}": {
+            "delete": {
+                "summary": "Delete user by ID",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "ID of the user to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User deleted successfully"
+                    }
+                }
+            }
+        }}
+    },
+    "components": {
+        "securitySchemes": {
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    },
+    "security": [
+        {
+            "BearerAuth": []
+        }
+    ]
+}
