@@ -6,10 +6,10 @@
 
 🔑 Fetch and display space news articles from RSS feeds, APIs. <br>
 🔑 Categorize articles based on topics such as astronomy, space exploration, astrophysics, etc.<br>
-🔑 Implement a search functionality allowing users to find articles by keywords, titles, or authors.<br>
-🔑 user authentication to allow registered users to personalize their news feeds and save favorite articles.<br>
-🔑 Enable social sharing options for users to share articles on d/t social medias.<br>
-🔑 Implement  a notification system to alert users about new articles matching their interests.<br>
+🔑 Allow users to find articles by keywords, titles, or authors.<br>
+🔑 Allow registered users to personalize their news feeds and save favorite articles.<br>
+🔑 Options for users to share articles on d/t social medias.<br>
+🔑 Notification system to alert users about new articles matching their interests.<br>
 
 ## Technologies Used
 
