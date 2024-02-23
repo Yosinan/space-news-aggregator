@@ -27,9 +27,11 @@ app.use(cookieParser());
 // Routes
 const userRoutes = require('./routes/userRoutes');
 const scrapeRoutes = require('./routes/scrapeRoutes');
+const newsRoutes = require('./routes/newsRoute');
 
 app.use('/user', userRoutes);
 app.use('/scrape', scrapeRoutes);
+app.use('/news', newsRoutes);
 
 
 app.get('/', (req, res) => {
