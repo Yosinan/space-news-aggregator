@@ -27,6 +27,7 @@ app.use(cookieParser());
 // Routes
 const userRoutes = require('./routes/userRoutes');
 const scrapeRoutes = require('./routes/scrapeRoutes');
+const articlesRoutes = require('./routes/articles');
 
 app.use('/user', userRoutes);
 app.use('/scrape', scrapeRoutes);
@@ -35,6 +36,15 @@ app.use('/scrape', scrapeRoutes);
 app.get('/', (req, res) => {
     res.send('Welcome to Ahamenes Space News Aggregator');
 })
+
+// Use routes
+app.use('/articles', articlesRoutes);
+
+// Start the server
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 
 module.exports = app;
