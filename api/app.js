@@ -27,10 +27,15 @@ app.use(cookieParser());
 // Routes
 const userRoutes = require('./routes/userRoutes');
 const scrapeRoutes = require('./routes/scrapeRoutes');
+<<<<<<< HEAD
 const articlesRoutes = require('./routes/articles');
+=======
+const newsRoutes = require('./routes/newsRoute');
+>>>>>>> 73e53e96de47f03df043c789c9289f97026e8787
 
 app.use('/user', userRoutes);
 app.use('/scrape', scrapeRoutes);
+app.use('/news', newsRoutes);
 
 
 app.get('/', (req, res) => {
