@@ -5,6 +5,36 @@ const axios = require('axios');
 const articles = async (req, res) => {
     try {
         const response = await axios.get("https://api.spaceflightnewsapi.net/v4/articles");
+        if (response.data.length === 0) {
+            return res.status(404).json({ error: "No articles found" });
+        }
+        res.json(response.data);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal server error");
+    }
+};
+
+const searchArticles = async (req, res) => {
+    try {
+        const queryParams = req.query;
+        console.log('Query Parameters:', queryParams);
+
+        //  base URL
+        let apiUrl = 'https://api.spaceflightnewsapi.net/v4/articles?';
+
+        // build the query string dynamically
+        const queryString = Object.keys(queryParams)
+            .map(key => `${key}=${encodeURIComponent(queryParams[key])}`)
+            .join('&');
+
+        apiUrl += queryString;
+
+        // Fetch articles from the constructed URL
+        const response = await axios.get(apiUrl);
+        if (response.data.length === 0) {
+            return res.status(404).json({ error: "No articles found" });
+        }
         res.json(response.data);
     } catch (error) {
         console.error(error);
@@ -16,6 +46,9 @@ const articleById = async (req, res) => {
     try {
         const { id } = req.params;
         const response = await axios.get(`https://api.spaceflightnewsapi.net/v4/articles/${id}`);
+        if (response.data.length === 0) {
+            return res.status(404).json({ error: "No articles found" });
+        }
         res.json(response.data);
     } catch (error) {
         console.error(error);
@@ -27,6 +60,9 @@ const blogById = async (req, res) => {
     try {
         const { id } = req.params;
         const response = await axios.get(`https://api.spaceflightnewsapi.net/v4/blogs/${id}`);
+        if (response.data.length === 0) {
+            return res.status(404).json({ error: "No articles found" });
+        }
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching blog:', error);
@@ -37,6 +73,9 @@ const blogById = async (req, res) => {
 const allBlogs = async (req, res) => {
     try {
         const response = await axios.get("https://api.spaceflightnewsapi.net/v4/blogs");
+        if (response.data.length === 0) {
+            return res.status(404).json({ error: "No articles found" });
+        }
         res.json(response.data);
     } catch (error) {
         console.error('Error fetching blogs:', error);
@@ -44,4 +83,4 @@ const allBlogs = async (req, res) => {
     }
 };
 
-module.exports = { articles, articleById, blogById, allBlogs };
+module.exports = { articles, articleById, blogById, allBlogs, searchArticles };
