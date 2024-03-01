@@ -10,8 +10,7 @@ const app = express();
 
 
 // Swagger
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
+// app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // start database connection
 start();
@@ -27,29 +26,18 @@ app.use(cookieParser());
 // Routes
 const userRoutes = require('./routes/userRoutes');
 const scrapeRoutes = require('./routes/scrapeRoutes');
-<<<<<<< HEAD
-const articlesRoutes = require('./routes/articles');
-=======
+const articlesRoutes = require('./routes/articleRoutes');
 const newsRoutes = require('./routes/newsRoute');
->>>>>>> 73e53e96de47f03df043c789c9289f97026e8787
+
 
 app.use('/user', userRoutes);
 app.use('/scrape', scrapeRoutes);
 app.use('/news', newsRoutes);
+app.use('/articles', articlesRoutes);
 
 
 app.get('/', (req, res) => {
     res.send('Welcome to Ahamenes Space News Aggregator');
 })
-
-// Use routes
-app.use('/articles', articlesRoutes);
-
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
 
 module.exports = app;

@@ -45,13 +45,13 @@ scrape = async (req, res) => {
 
         // using cheerio
 
-        (async () => {
-            const url = 'http://127.0.0.1:5500/index.html';
-            const response = await axios.get(url);
-            const $ = cheerio.load(response.data);
-            console.log('Scraped data:', $.root());
-            // res.json({ data: 'Scraped data' }); // Send scraped data as response
-        })();
+        // (async () => {
+        //     const url = 'http://127.0.0.1:5500/index.html';
+        //     const response = await axios.get(url);
+        //     const $ = cheerio.load(response.data);
+        //     console.log('Scraped data:', $.root());
+        //     // res.json({ data: 'Scraped data' }); // Send scraped data as response
+        // })();
 
     } catch (error) {
         console.error('Error scraping website:', error);
