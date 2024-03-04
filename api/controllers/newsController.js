@@ -1,7 +1,22 @@
 
 const axios = require('axios');
+const Parser = require('rss-parser');
 
+const parser = new Parser();
 
+// Fetch space-news from rss feed
+
+const getFeed = async (req, res) => {
+    try {
+        const feed = await parser.parseURL('https://www.space.com/feeds/all');
+        res.json(feed);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Internal server error");
+    }
+};
+
+// Fetch articles from the Spaceflight News API
 const articles = async (req, res) => {
     try {
         const response = await axios.get("https://api.spaceflightnewsapi.net/v4/articles");
@@ -83,4 +98,4 @@ const allBlogs = async (req, res) => {
     }
 };
 
-module.exports = { articles, articleById, blogById, allBlogs, searchArticles };
+module.exports = { articles, articleById, blogById, allBlogs, searchArticles, getFeed };

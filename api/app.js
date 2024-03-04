@@ -32,7 +32,7 @@ const newsRoutes = require('./routes/newsRoute');
 
 app.use('/user', userRoutes);
 app.use('/scrape', scrapeRoutes);
-app.use('/news', newsRoutes);
+app.use('/space', newsRoutes);
 app.use('/articles', articlesRoutes);
 
 
