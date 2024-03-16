@@ -1,177 +1,200 @@
 {
-    "openapi": "3.0.0",
+    "swagger": "2.0",
     "info": {
         "title": "Ahamenes-Space News Aggregator API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "description": "An API for aggregating space related news, articles and blogs"
     },
+    "host": "ahamenes.onrender.com",
+    "basePath": "/space",
+    "tags": [
+        {
+            "name": "admins",
+            "description": "Secured Admin-only calls"
+        },
+        {
+            "name": "developers",
+            "description": "Operations available to regular developers"
+        }
+    ],
+    "schemes": [
+        "https",
+        "http"
+    ],
     "paths": {
-        "/user/logout": {
-            "post": {
-                "summary": "Logout a user",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "ID of the user to retrieve",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "User successfully logged out"
-                    }
-                    
-
-                }
-            }
-        },
-        "/user/register": {
-            "post": {
-                "summary": "Register a new user",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "example": {
-                                "name": "Doe",
-                                "email": "doe@gmail.com",
-                                "password": "newPass23"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "User successfully registered"
-                    }
-                }
-            }
-        },
-        "/user/login": {
-            "post": {
-                "summary": "Login a user",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "example": {
-                                "email": "doe@gmail.com",
-                                "password": "newPass23"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "User successfully logged in"
-                    }
-                }
-            }
-        },
-        "/user/profile": {
+        "/articles": {
             "get": {
-                "summary": "Get user profile",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
+                "tags": [
+                    "developers"
+                ],
+                "summary": "Get all space related articles",
+                "description": "Get all space related articles",
+                "produces": [
+                    "application/json"
                 ],
                 "responses": {
                     "200": {
-                        "description": "User profile retrieved successfully"
+                        "description": "Articles retrieved successfully"
+                    },
+                    "404": {
+                        "description": "No articles found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             }
         },
-        "/user/{userId}": {
+        "/articles/search": {
             "get": {
-                "summary": "Get user by ID",
+                "tags": [
+                    "developers"
+                ],
+                "summary": "Search for articles",
+                "description": "Search for articles by keyword",
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "ID of the user to retrieve",
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search query",
                         "required": true,
                         "schema": {
                             "type": "string"
                         }
-                    }
-                ],
-                "security": [
-                    {
-                        "BearerAuth": []
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "User retrieved successfully"
+                        "description": "Articles retrieved successfully"
+                    },
+                    "404": {
+                        "description": "No articles found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             }
         },
-        "/user/change/{userId}": {
-            "put": {
-                "summary": "Update user password",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
+        "/articles/:id": {
+            "get": {
+                "tags": [
+                    "developers"
+                ],
+                "summary": "Get article by ID",
+                "description": "Get article by ID",
+                "produces": [
+                    "application/json"
                 ],
                 "parameters": [
                     {
-                        "name": "userId",
+                        "name": "id",
                         "in": "path",
-                        "description": "ID of the user to retrieve",
+                        "description": "ID of the article to retrieve",
                         "required": true,
                         "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "example": {
-                                "password": "password23",
-                                "newPassword": "newPassword"
-                            }
-                        }
-                    }
-                }
-
-        },
-        "/user/delete/{userId}": {
-            "delete": {
-                "summary": "Delete user by ID",
-                "parameters": [
-                    {
-                        "name": "userId",
-                        "in": "path",
-                        "description": "ID of the user to retrieve",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "security": [
-                    {
-                        "BearerAuth": []
+                            "type": "integer"
+                        },
+                        "format": "int64",
+                        "minimum": 1
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "User deleted successfully"
+                        "description": "Article retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Article not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
                     }
                 }
             }
-        }}
+        },
+        "/blogs": {
+            "get": {
+                "tags": [
+                    "developers"
+                ],
+                "summary": "Get all space related blogs",
+                "description": "Get all space related blogs",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Blogs retrieved successfully"
+                    },
+                    "404": {
+                        "description": "No blogs found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/blogs/:id": {
+            "get": {
+                "tags": [
+                    "developers"
+                ],
+                "summary": "Get blog by ID",
+                "description": "Get blog by ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the blog to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Blog retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Blog not found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/feed": {
+            "get": {
+                "tags": [
+                    "developers"
+                ],
+                "summary": "Get RSS feed",
+                "description": "Get RSS feed",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "RSS feed retrieved successfully"
+                    },
+                    "404": {
+                        "description": "No RSS feed found"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
     },
     "components": {
         "securitySchemes": {
