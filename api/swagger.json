@@ -79,7 +79,7 @@
                 }
             }
         },
-        "/articles/:id": {
+        "/articles/{id}": {
             "get": {
                 "tags": [
                     "developers"
@@ -138,7 +138,7 @@
                 }
             }
         },
-        "/blogs/:id": {
+        "/blogs/{id}": {
             "get": {
                 "tags": [
                     "developers"
